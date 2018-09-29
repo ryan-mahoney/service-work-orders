@@ -1,0 +1,127 @@
+<html>
+
+<head>
+  <title>Create Order</title>
+  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="columns">
+      <div class="column col-9 col-sm-12">
+        <form class="form-horizontal" action="#forms">
+          <div class="form-group">
+            <div class="col-3 col-sm-12">
+              <label class="form-label">Work Order</label>
+            </div>
+            <div class="col-9 col-sm-12">
+              <input class="form-input" name="work_order_number" type="text" placeholder="Work Order">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-3 col-sm-12">
+              <label class="form-label">Building</label>
+            </div>
+            <div class="col-9 col-sm-12">
+              <input class="form-input" name="building" type="text" placeholder="Building">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-3 col-sm-12">
+              <label class="form-label">Room</label>
+            </div>
+            <div class="col-9 col-sm-12">
+              <input class="form-input" name="room" type="text" placeholder="Room">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-3 col-sm-12">
+              <label class="form-label">Problem</label>
+            </div>
+            <div class="col-9 col-sm-12">
+              <textarea class="form-input" name="problem" type="text" placeholder="Problem"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-3 col-sm-12">
+              <label class="form-label">Created Date</label>
+            </div>
+            <div class="col-9 col-sm-12">
+              <input class="form-input" name="created_date" type="text" placeholder="Created Date">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-3 col-sm-12">
+              <label class="form-label">Received Date</label>
+            </div>
+            <div class="col-9 col-sm-12">
+              <input class="form-input" name="received_date" type="text" placeholder="Received Date">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-3 col-sm-12">
+              <label class="form-label">Work Date</label>
+            </div>
+            <div class="col-9 col-sm-12">
+              <input class="form-input" name="work_date" type="text" placeholder="Work Date">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-3 col-sm-12">
+              <label class="form-label">Work Done</label>
+            </div>
+            <div class="col-9 col-sm-12">
+              <textarea class="form-input" name="work_done" type="text" placeholder="Work Done"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-3 col-sm-12">
+              <label class="form-label">Hours Worked</label>
+            </div>
+            <div class="col-9 col-sm-12">
+              <input class="form-input" name="hours_worked" type="text" placeholder="Hours Worked">
+            </div>
+          </div>
+
+          <input class="btn btn-primary" type="submit" value="Submit" />
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+
+  <script>
+    $(document).on('submit', 'form', function (e) {
+      e.preventDefault();
+      console.log("FORM SUBMITTED");
+
+      const formData = $(this).serializeObject();
+
+      $.ajax({
+        type: "POST",
+        url: "/api/order",
+        data: formData,
+        success: () => {
+          console.log("it worked...");
+        },
+        dataType: "json"
+      });
+    });
+  </script>
+</body>
+
+</html>
